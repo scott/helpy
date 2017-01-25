@@ -9,7 +9,7 @@
   <%= f.simple_fields_for @user do |u| %>
     <%= u.input :name, class: 'disable-empty' %>
     <%= u.input :home_phone, class: 'disable-empty', label: "Phone" %>
-    <%= u.input :email, class: 'disable-empty', label: "Email (#{link_to 'generate temporary', '#', class: 'generate-temp'})".html_safe %>
+    <%= u.input :email, class: 'disable-empty', label: "Email (#{link_to t('temp_email', default: 'No Email'), '#', class: 'generate-temp'})".html_safe %>
   <% end %>
   <%= f.input(:team_list, collection: @all_teams, :label => t(:assign_to), locale: I18n.locale, prompt: "", style: "display:none;") if teams? and @all_teams.count > 0 %>
   <%= f.simple_fields_for @topic.posts.new do |i| %>
