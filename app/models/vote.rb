@@ -15,6 +15,7 @@ class Vote < ActiveRecord::Base
 
   belongs_to :voteable, :polymorphic => true
   belongs_to :user
+
   after_create :increment_points_cache
 
   validates :voteable_id, uniqueness: { scope: [:user_id, :voteable_type] }
@@ -22,8 +23,8 @@ class Vote < ActiveRecord::Base
   protected
 
   def increment_points_cache
-    self.voteable_type.constantize.update_counters(self.voteable_id, points: self.points)
+    votable_class = self.class.const_get(self.voteable_type.to_sym)
+    votable_class.update_counters(self.voteable_id, points: self.points)
   end
-
 
 end
