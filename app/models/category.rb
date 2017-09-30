@@ -61,7 +61,7 @@ class Category < ActiveRecord::Base
   end
 
   def non_deleteable?
-    return false if name == "Common Replies"
+    name != "Common Replies"
   end
 
   def publicly_viewable?
