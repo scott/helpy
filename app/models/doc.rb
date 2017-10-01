@@ -30,7 +30,7 @@ class Doc < ActiveRecord::Base
 
   belongs_to :category
   belongs_to :user
-  has_many :votes, :as => :voteable
+  has_many :votes, as: :voteable
   has_one :topic
   has_many :posts, through: :topic
 
@@ -71,12 +71,16 @@ class Doc < ActiveRecord::Base
   end
 
   def read_translated_attribute(name)
-    globalize.stash.contains?(Globalize.locale, name) ? globalize.stash.read(Globalize.locale, name) : translation_for(Globalize.locale).send(name)
+    if globalize.stash.contains?(Globalize.locale, name)
+      globalize.stash.read(Globalize.locale, name)
+    else
+      translation_for(Globalize.locale).send(name)
+    end
   end
 
   def content
     c = RDiscount.new(self.body)
-    return c.to_html
+    c.to_html
   end
 
 end
