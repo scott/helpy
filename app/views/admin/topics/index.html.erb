@@ -1,15 +1,11 @@
 <% title "#{admin_title} #{t(:discussions, default: "Discussions")}" %>
 
 <div class="row white-bg">
-  <div id="admin-left-nav" class="hidden-xs col-md-3 hidden-sm ticket-stats">
-    <%= render 'admin/topics/ticket_stats' %>
+  <div id="admin-left-nav" class="hidden-xs col-sm-6 col-md-4 ticket-stats scrolling">
+    <%= render partial: 'admin/topics/tiny' %>
   </div>
 
-  <div class="col-md-9 col-sm-12 main-panel" id="tickets">
-    <%= render 'admin/topics/tickets' %>
-  </div>
-
-  <div class="" id="customer-info">
-
+  <div id="tickets" class="col-sm-6 col-md-8 main-panel scrolling">
+    <%= render 'ticket' %>
   </div>
 </div>

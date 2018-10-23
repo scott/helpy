@@ -56,10 +56,14 @@ ul.settings-menu {
   font-weight: bold;
 }
 
-#ticket-nav,
-#user-nav,
-#admin-left-nav {
-  height: 100%;
+// #ticket-nav,
+// #user-nav,
+// #admin-left-nav {
+//   height: 100%;
+// }
+.ticket-stats {
+  overflow-y: scroll;
+  height: calc(90vh - 130px);
 }
 
 #admin-left-nav.open {
@@ -158,6 +162,8 @@ ul.settings-menu {
   -webkit-box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 40px -15px rgba(0,0,0,0.75);
+  overflow-y: scroll;
+  height: calc(90vh - 130px);
 }
 
 .col-md-12.main-panel {

@@ -38,6 +38,7 @@ class Admin::TopicsController < Admin::BaseController
     get_tickets_by_status
     team_tag_ids = ActsAsTaggableOn::Tagging.all.where(context: "teams").includes(:tag).map{|tagging| tagging.tag.id }.uniq
     @teams = ActsAsTaggableOn::Tag.where("id IN (?)", team_tag_ids)
+    @topic = @topics.first
     tracker("Admin-Nav", "Click", @status.titleize)
   end
 
@@ -524,7 +525,7 @@ class Admin::TopicsController < Admin::BaseController
     else
       @topic.user_id = @user.id
     end
-    
+
     fetch_counts
     respond_to do |format|
       if (@user.save || !@user.nil?) && @topic.save

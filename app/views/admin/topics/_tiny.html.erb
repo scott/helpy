@@ -1,11 +1,51 @@
-<% if @topics.present? %>
-<div class="hidden-sm hidden-xs">
-  <div class="left-nav-header">
-    <span class="tiny-header">Other tickets in "<%= @status %>"</span>
+<div class="row">
+  <div class="col-sm-12">
+
+    <% if current_user.is_agent? %>
+  	<div class="topic-search-container jumbotron">
+  		<div class="container">
+  			<div class="row">
+  				<div class="col-md-12">
+  					<div class="topic-search">
+  						<%= render partial: 'admin/search/topic_search' %>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  	<% end %>
+
+
+    <span class="btn-group left-col-dropdown">
+      <button class="status dropdown-toggle ticket-control" data-toggle="dropdown" aria-expanded="false">
+        <%= @status %>
+      </button>
+      <ul class="dropdown-menu ticket-controls" role="menu">
+        <%= render partial: 'admin/topics/nav_item', locals: { status: 'active', label: t(:active), count: @active } %>
+        <%= render partial: 'admin/topics/nav_item', locals: { status: 'new', label: t(:new), count: @new } %>
+        <%= render partial: 'admin/topics/nav_item', locals: { status: 'mine', label: t(:mine), count: @mine } %>
+        <%= render partial: 'admin/topics/nav_item', locals: { status: 'pending', label: t(:pending), count: @pending } %>
+      </ul>
+    </span>
+
+  <!-- </div> -->
+
+  <% if @topics.present? %>
+  <!-- <div class="hidden-sm hidden-xs hidden-sm col-md-6 col-lg-6"> -->
+    <ul class="list-unstyled nav-items" data-hook="ticket-stats">
+      <table id="topics" class="forum table-hover">
+        <!-- <col width="80px" class="hidden-xs"> -->
+        <col width="80%" class="checkbox-col">
+        <col width="10%" class="checkbox-col">
+        <tbody id="topic-listing">
+          <%= render partial: 'admin/topics/medium_topic', collection: @topics %>
+        </tbody>
+      </table>
+      <div class="text-center">
+        <%= paginate @topics, remote: true %>
+      </div>
+    </ul>
+  <!-- </div> -->
+  <% end %>
   </div>
-  <ul class="list-unstyled nav-items" data-hook="ticket-stats">
-    <%= render partial: 'admin/topics/tiny_topic', collection: @topics %>
-  </ul>
 </div>
-<% end %>
-<%= render partial: 'admin/topics/ticket_stats' %>

@@ -1,11 +1,11 @@
 <% title "#{admin_title} #{t(:discussions, default: 'Discussions')}: #{@topic.id} #{@topic.name.titleize}" %>
 
 <div class="row">
-  <div id="admin-left-nav" class="hidden-xs hidden-sm col-md-3 ticket-stats">
+  <div id="admin-left-nav" class="hidden-xs col-sm-6 col-md-4 ticket-stats">
     <%= render partial: 'admin/topics/tiny' %>
   </div>
 
-  <div id="tickets" class="col-md-9 main-panel">
+  <div id="tickets" class="col-sm-6 col-md-8 main-panel">
     <%= render 'ticket' %>
   </div>
 </div>
