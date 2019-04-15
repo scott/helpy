@@ -84,7 +84,7 @@ gem 'acts-as-taggable-on'
 gem 'kaminari'
 gem 'kaminari-i18n'
 
-gem 'globalize', '~> 5.1.0'
+gem 'globalize'
 gem 'globalize-versioning'
 gem 'globalize-accessors'
 

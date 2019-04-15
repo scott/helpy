@@ -52,6 +52,12 @@ class Doc < ApplicationRecord
   has_paper_trail
 
   translates :title, :body, :keywords, :title_tag, :meta_description, fallbacks_for_empty_translations: false, versioning: :paper_trail
+  attribute :title
+  attribute :body
+  attribute :keywords
+  attribute :title_tag
+  attribute :meta_description
+  
   globalize_accessors
 
   paginates_per 25

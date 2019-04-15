@@ -717,7 +717,7 @@ DEPENDENCIES
   fog-aws
   font-awesome-sass
   gemoji
-  globalize (~> 5.1.0)
+  globalize
   globalize-accessors
   globalize-versioning
   grape (= 1.2.1)

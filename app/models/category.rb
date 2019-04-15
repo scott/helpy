@@ -29,6 +29,11 @@ class Category < ApplicationRecord
   acts_as_taggable_on :teams
 
   translates :name, :keywords, :title_tag, :meta_description, versioning: :paper_trail
+  attribute :name
+  attribute :keywords
+  attribute :title_tag
+  attribute :meta_description
+  
   globalize_accessors #:locales => I18n.available_locales, :attributes => [:name, :keywords, :title_tag, :meta_description]
 
   PUBLIC_VIEWABLE   = %w[all public]
