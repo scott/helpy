@@ -92,6 +92,7 @@ module API
             active: permitted_params[:active]
           )
           present doc, with: Entity::Doc
+          binding.pry
         end
 
       end

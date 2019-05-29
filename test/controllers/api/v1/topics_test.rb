@@ -188,6 +188,7 @@ class API::V1::TopicsTest < ActiveSupport::TestCase
     post '/api/v1/tickets.json', @default_params.merge(params)
 
     object = JSON.parse(last_response.body)
+
     assert_equal 1, object['forum_id']
     assert object['name'] == "Got a problem"
     assert object['posts'].count == 1

@@ -13,6 +13,8 @@
 /log/*
 !/log/.keep
 /tmp
+/node_modules
+/yarn-error.log
 .byebug_history
 
 config/settings.local.yml

@@ -9,7 +9,8 @@ Bundler.require(*Rails.groups)
 
 module Helpy
   class Application < Rails::Application
-
+    config.load_defaults 5.1
+    
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
     config.assets.paths << Rails.root.join("public",'uploads','logos')
     config.exceptions_app = self.routes
@@ -25,6 +26,9 @@ module Helpy
       Devise::Mailer.layout "mailer" # email.haml or email.erb
     end
 
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration should go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded.
   end
 end
 
