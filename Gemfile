@@ -76,7 +76,6 @@ gem 'grape-attack'
 gem 'grape-kaminari', git: 'https://github.com/joshmn/grape-kaminari'
 gem 'rack-cors', :require => 'rack/cors'
 
-gem 'permalink_fu'
 gem 'paper_trail'
 
 gem 'acts-as-taggable-on'
@@ -102,7 +101,7 @@ gem 'mini_magick'
 # Bootstrap/UI Gems
 gem 'font-awesome-sass'
 gem 'bootstrap-sass'
-gem 'bootstrap_form'
+gem 'bootstrap_form', '~> 2.7' # NOTE: 2.7 maintains BS 3 compatibility
 gem 'simple_form'
 gem 'twitter-bootstrap-rails'
 gem 'twitter-bootstrap-rails-confirm'
@@ -126,7 +125,6 @@ gem 'griddler-mandrill'
 gem 'griddler-sendgrid'
 gem 'griddler-mailgun'
 gem 'griddler-postmark'
-gem 'griddler-mailin'
 gem 'griddler-sparkpost'
 
 # html Email
@@ -195,7 +193,6 @@ group :test do
   gem 'shoulda-matchers', '~> 2.0'  # Required for minitest
   gem 'factory_bot_rails'
   gem 'capybara'
-  gem 'minitest-rails-capybara'
   gem 'capybara-email'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'

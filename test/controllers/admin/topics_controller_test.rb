@@ -510,4 +510,65 @@ class Admin::TopicsControllerTest < ActionController::TestCase
     assert_equal topic.reload.private, false
     refute_nil topic.pg_search_document
   end
+
+  # Test of super bulk (all matching tickets) actions
+
+  test "should be able to move all matching tickets to trash" do
+    Topic.find(1).update(current_status: 'spam')
+    Topic.find(2).update(current_status: 'spam')
+    spam_topics = Topic.where(current_status: 'spam').all
+    sign_in users(:agent)
+    assert_difference("Topic.trash.size", spam_topics.size) do
+      get :update_topic, params: { q: 'spam', change_status: "trash", affect: 'all' }, xhr: true
+    end
+    assert_response :success
+  end
+
+  test "should be able to assign all matching tickets to agent" do
+    Topic.find(1).update(current_status: 'spam')
+
+    Topic.where(assigned_user_id: 1).update_all(assigned_user_id: nil)
+    spam_topics = Topic.where(current_status: 'spam').all
+    sign_in users(:agent)
+    assert_difference("Topic.where(assigned_user_id: 1).size", spam_topics.size) do
+      get :assign_agent, params: { q: 'spam', assigned_user_id: 1, affect: 'all' }, xhr: true
+    end
+    assert_response :success
+  end
+
+  test "should be able to unassign all matching tickets" do
+    Topic.find(1).update(current_status: 'spam')
+    Topic.find(2).update(current_status: 'spam')
+
+    Topic.find(1).update(current_status: 'spam')
+    spam_topics = Topic.where(current_status: 'spam').all
+    sign_in users(:agent)
+    get :unassign_agent, params: { q: 'spam', affect: 'all' }, xhr: true
+    assert_equal 0, Topic.admin_search('spam').where(assigned_user_id: nil).size
+    assert_response :success
+  end
+
+  test "should be able to assign all matching tickets to group" do
+    Topic.find(1).update(current_status: 'spam')
+    Topic.find(2).update(current_status: 'spam')
+
+    spam_topics = Topic.where(current_status: 'spam').all
+    sign_in users(:agent)
+    assert_difference("Topic.tagged_with('test_team', context: 'teams').size", spam_topics.size) do
+      get :assign_team, params: { q: 'spam', assign_team: "test_team", affect: 'all' }, xhr: true
+    end
+    assert_response :success
+  end
+  
+  test "should be able to unassign all matching tickets from group" do
+    sign_in users(:agent)
+    Topic.admin_search('new').each do |t|
+      t.team_list = 'test_team'
+      t.save!
+    end
+    get :unassign_team, params: { q: 'new', affect: 'all' }, xhr: true
+    assert_equal 0, Topic.admin_search('new').tagged_with('test_team', context: 'teams').size
+    assert_response :success
+  end
+
 end
