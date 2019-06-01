@@ -1,0 +1,6 @@
+dependencies:
+  - imagemagick
+#   - default-dependency-2
+targets:
+  ubuntu-16.04:
+  ubuntu-18.04:
