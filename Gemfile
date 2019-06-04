@@ -209,4 +209,8 @@ group :production do
   gem 'unicorn'
 end
 
+if !ENV['HELPY_LOGIN'].nil? && !ENV['HELPY_PW'].nil?
+  gem 'helpy_cloud', source: "https://#{ENV['HELPY_LOGIN']}:#{ENV['HELPY_PW']}@gems.helpy.io"
+end
+
 ruby '>= 2.2', '< 3.0'
