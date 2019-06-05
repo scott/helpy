@@ -47,9 +47,14 @@ mail_domain: #Enter the heroku.com if you are on heroku, otherwise enter your do
 
 omniauth:
   providers:
-#    github:
-#      id:
-#      secret:
+  <% if ENV['OAUTH_PROVIDER'].present? %>
+   <%= ENV['OAUTH_PROVIDER'] %>:
+     id: <%= ENV['OAUTH_ID'] %>
+     secret: <%= ENV['OAUTH_SECRET'] %>
+  <% end %>
+#   github:
+#     id:
+#     secret:
 #    twitter:
 #      id:
 #      secret:
