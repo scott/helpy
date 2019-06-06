@@ -17,8 +17,8 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV['POSTGRES_DB'] || 'helpy_production' %>
-  username: <%= ENV['POSTGRES_USER'] || 'helpy' %>
-  password: <%= ENV['POSTGRES_PASSWORD'] || 'helpy' %>
-  host: <%= ENV['POSTGRES_HOST'] || 'localhost' %>
-  port: <%= ENV['POSTGRES_PORT'] || '5432' %>
+  database: <%= ENV['HELPY_POSTGRES_DB'] || 'helpy_production' %>
+  username: <%= ENV['HELPY_POSTGRES_USER'] || 'helpy' %>
+  password: <%= ENV['HELPY_POSTGRES_PASSWORD'] || 'helpy' %>
+  host: <%= ENV['HELPY_POSTGRES_HOST'] || 'localhost' %>
+  port: <%= ENV['HELPY_POSTGRES_PORT'] || '5432' %>
