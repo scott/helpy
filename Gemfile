@@ -205,7 +205,7 @@ end
 
 group :production do
   # Uncomment this gem for Heroku:
-  # gem 'rails_12factor'
+  gem 'rails_12factor' #TODO: remove for Rails 5
   gem 'unicorn'
 end
 
