@@ -4,3 +4,4 @@ dependencies:
 targets:
   ubuntu-16.04:
   ubuntu-18.04:
+after_install: "packaging/debian/postinstall.sh"
