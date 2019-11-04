@@ -143,6 +143,7 @@ Rails.application.routes.draw do
 
     get 'internal_docs/search' => 'internal_categories#search', as: :internal_docs_search
 
+    patch 'categories/reorganize' => 'categories#reorganize', as: :reorganize
     resources :categories do
       resources :docs, except: [:index, :show]
     end
@@ -174,6 +175,8 @@ Rails.application.routes.draw do
     get '/reports/team' => 'reports#team', as: :team_reports
     get '/reports/groups' => 'reports#groups', as: :group_reports
     get '/reports' => 'reports#index', as: :reports
+
+    get '/dashboard/blank' => 'dashboard#blank', as: :blank_dashboard
 
     root to: 'dashboard#index'
   end
